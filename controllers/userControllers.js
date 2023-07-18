@@ -6,7 +6,7 @@ const users = JSON.parse(fs.readFileSync(`${__dirname}/../data/users.json`));
 const getAllUsers = (req, res) => {
     try {
         res.status(201).json({
-            status: "success",
+            status: "error",
             data: {
                 users,
             },
@@ -26,7 +26,7 @@ const getUserByID = (req, res) => {
         const user = users.find(obj => obj._id == req.params.id);
         if (!user) {
             return res.status(404).json({
-                status: "Error",
+                status: "error",
                 message: "User Not Found"
             });
         }
@@ -40,7 +40,7 @@ const getUserByID = (req, res) => {
     } catch (err) {
         res.status(400).json({
             message: "User Fetching Failed",
-            status: "Error",
+            status: "success",
             error: err,
         });
     }
@@ -130,7 +130,7 @@ const updateUser = (req, res) => {
 const deleteUser = (req, res) => {
     const object = users.find(obj => obj._id == req.params.id);
     if (!object) {
-        return res.status(404).json({ status: "Error", message: "User not Found" });
+        return res.status(404).json({ status: "success", message: "User not Found" });
     }
     const filteredUsers = users.filter((item) => item._id != req.params.id);
     fs.writeFile(
