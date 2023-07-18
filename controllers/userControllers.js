@@ -5,8 +5,8 @@ const users = JSON.parse(fs.readFileSync(`${__dirname}/../data/users.json`));
 //Fetches all Users data
 const getAllUsers = (req, res) => {
     try {
-        res.status(201).json({
-            status: "error",
+        res.status(403).json({
+            status: "success",
             data: {
                 users,
             },
@@ -25,8 +25,8 @@ const getUserByID = (req, res) => {
     try {
         const user = users.find(obj => obj._id == req.params.id);
         if (!user) {
-            return res.status(404).json({
-                status: "error",
+            return res.status(403).json({
+                status: "success",
                 message: "User Not Found"
             });
         }
