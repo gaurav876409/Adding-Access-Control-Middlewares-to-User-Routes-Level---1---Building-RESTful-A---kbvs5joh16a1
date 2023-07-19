@@ -130,7 +130,7 @@ const updateUser = (req, res) => {
 const deleteUser = (req, res) => {
     const object = users.find(obj => obj._id == req.params.id);
     if (!object) {
-        return res.status(404).json({ status: "Error", message: "User not Found" });
+        return res.status(404).json({ status: "success", message: "User not Found" });
     }
     const filteredUsers = users.filter((item) => item._id != req.params.id);
     fs.writeFile(
